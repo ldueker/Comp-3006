@@ -1,0 +1,187 @@
+import random
+'''DiceWar is a Dice game based on the popular card Game war.  Instead of drawing and comparing cards, the Player rolls 2 dice in a cup and compares them against 
+the Computer.  The Player and Computer start with 1000 credits and play until one has 0 credits, with the player having control over how much is bet each round.
+I have also created a class for individual dice, with the same Comparision magic methods available as in the DiceCup class
+'''
+class Dice():
+    def __init__(self,sides_count):
+        self.sides_count = sides_count
+        self.roll()
+
+    def __str__(self):               #Creation of String
+        return f'The die has {self.sides_count} sides and a value of {self.result}'
+
+    def __eq__(self,other):
+        if self.result == other.result: #Equality Comparison
+            return True
+        else:
+            return False
+
+    def __ne__(self,other):             #Not Equal Comparison
+        if self.result != other.result:
+            return True
+        else:
+            return False
+
+    def __lt__(self, other):            #Less than Comparison
+        if self.result < other.result:
+            return True
+        else:
+            return False
+
+    def __gt__(self,other):             #Greater than Comparison
+        if self.result > other.result:
+            return True
+        else:
+            return False
+
+    def __le__(self, other):             #Less than or equal too
+        if self.result <= other.result:
+            return True
+        else:
+            return False
+
+
+    def __ge__(self,other):              #Greater than or equal too
+        if self.result >= other.result:
+            return True
+        else:
+            return False
+
+    def __add__(self,other):            #Add Operation
+        cSum = self.result + other.result
+        newDice = Dice(self.sides_count + other.sides_count)
+        newDice.result = cSum
+        return newDice
+
+    def roll(self):                        #Function to roll the dice and track the result
+        self.result = random.randint(1, self.sides_count)
+        return self.result
+
+class DiceCup(Dice):
+    def __init__(self,dicenum):
+        self.dicenum= dicenum
+        self.dicevalues = []
+        for i in range(0,dicenum):
+            self.dicevalues.append(Dice(6))
+
+    def __str__(self):
+        return f'There are {self.dicenum} number of dice in the cup'
+
+    def ResultDiceCup(self):                #Tracks the results of adding the values in the Dice Cup
+        self.sum = 0
+        for i in self.dicevalues:
+             self.sum += i.result
+        return self.sum
+
+
+    def __eq__(self,other):
+        if self.sum == other.sum:    #EQUALITY COMPARISON
+            return True
+        else:
+            return False
+
+    def __ne__(self,other):           #NOT EQUALS
+        if self.sum != other.sum:
+            return True
+        else:
+            return False
+
+
+    def __lt__(self, other):          #Less Than
+        if self.sum < other.sum:
+            return True
+        else:
+            return False
+
+    def __gt__(self,other):           #Greater Than
+        if self.sum > other.sum:
+            return True
+        else:
+            return False
+
+    def __le__(self, other):           #Less than or equal too
+        if self.sum <= other.sum:
+            return True
+        else:
+            return False
+
+    def __ge__(self,other):            #Greater than or equal too
+        if self.sum >= other.sum:
+            return True
+        else:
+            return False
+
+
+def main():
+    print("Welcome to DiceWar")
+    PlayerMoney = 1000
+    ComputerMoney = 1000
+    print ("Player has ",PlayerMoney," Dollars")
+    print("Computer has ",ComputerMoney," Dollars")
+    while PlayerMoney != 0 and ComputerMoney != 0:
+        PlayerBet = int(input("Input Bet amount:"))
+        Dice1 = Dice(6)
+        Dice2 = Dice(6)
+        DiceCup1 = DiceCup(2)
+        DiceCup2 = DiceCup(2)
+        '''
+This is for two individual dice, I used this to test my Dice Class but it is not important for the function of the game:
+    
+    
+    print("Dice:")
+    print("Dice 1 = ",Dice1)
+    print ("Dice 2 =", Dice2)
+
+    #Displaying the Comparision Methods
+
+
+
+    if ((Dice1 == Dice2) is True):
+        print("The two dice are equal")
+    if ((Dice1!=Dice2) is True):
+        print("The two dice are not equal")
+    if ((Dice1 < Dice2) is True):
+        print("Dice 1 is less than Dice 2")
+    if ((Dice1 > Dice2) is True):
+        print("Dice 2 is less than Dice 1")
+
+
+
+    #Displaying the Addition Method
+    Dice3 = Dice1 + Dice2
+    print("The addition of the two dice equals:")
+    print(Dice3)
+        '''
+
+        print("DiceCups:")
+        print("Player's Cup:")
+        print(DiceCup1)
+        print("Sum of the Dice in the Cup equals:")
+        print(DiceCup1.ResultDiceCup())
+        print("Computer's Cup")
+        print(DiceCup2)
+        print("Sum of the Dice in the Cup equals:")
+        print(DiceCup2.ResultDiceCup())
+
+
+    #Displaying the Comparison Methods
+        if ((DiceCup1.ResultDiceCup() == DiceCup2.ResultDiceCup()) is True):
+            print("The two dice Cups are equal")
+        if ((DiceCup1.ResultDiceCup()!=DiceCup2.ResultDiceCup()) is True):
+            print("The two dice are not equal")
+        if ((DiceCup1.ResultDiceCup() < DiceCup2.ResultDiceCup()) is True):
+            print("Players Dice Cup is less than Computer's Dice Cup")
+            PlayerMoney = PlayerMoney - PlayerBet
+            ComputerMoney = ComputerMoney + PlayerBet
+            print("Player has:",PlayerMoney)
+            print("Computer has:",ComputerMoney)
+        if ((DiceCup1.ResultDiceCup() > DiceCup2.ResultDiceCup()) is True):
+            print("Dice Cup 2 is less than Dice 1")
+            PlayerMoney = PlayerMoney + PlayerBet
+            ComputerMoney = ComputerMoney - PlayerBet
+            print("Player has:",PlayerMoney)
+            print("Computer has:",ComputerMoney)
+
+    print("GameOver")
+main()
