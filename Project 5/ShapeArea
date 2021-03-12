@@ -1,0 +1,137 @@
+import math
+
+
+class Shape():
+    def __init__(self, sides_count, side_length, side_width, side_height, minor_axis, major_axis, base_length,
+                 base_height, radius_length):
+        self.base_height = base_height
+        self.base_length = base_length
+        self.sides_count = sides_count
+        self.side_length = side_length
+        self.side_width = side_width
+        self.side_height = side_height
+        self.major_axis = major_axis
+        self.minor_axis = minor_axis
+        self.radius_length = radius_length
+
+
+class Rectangle(Shape):
+    def __init__(self, side_length, side_width):
+        self.side_width = side_width
+        self.side_length = side_length
+
+    def area(self):
+        self.area = self.side_length * self.side_width
+        return (self.area)
+
+
+class Oval(Shape):
+    def __init__(self, minor_axis, major_axis):
+        self.major_axis = major_axis
+        self.minor_axis = minor_axis
+
+    def area(self):
+        self.area = 3.14 * (self.minor_axis / 2) * (self.major_axis / 2)
+        return (self.area)
+
+
+class Polygon(Shape):
+    def __init__(self, sides_count, side_length):
+        self.sides_count = sides_count
+        self.side_length = side_length
+
+    def area(self):
+        self.area = ((self.side_length * self.side_length) * self.sides_count) / (4 * math.tan(180 / self.sides_count))
+        return (self.area)
+
+
+class Square(Shape):
+    def __init__(self, side_length):
+        self.side_length = side_length
+
+    def area(self):
+        self.area = (self.side_length * self.side_length)
+        return (self.area)
+
+
+class Triangle(Shape):
+    def __init__(self, base_length, base_height):
+        self.base_length = base_length
+        self.base_height = base_height
+
+    def area(self):
+        self.area = (self.base_height * self.base_length) / 2
+        return (self.area)
+
+
+class Pentagon(Shape):
+    def __init__(self, side_length):
+        self.side_length = side_length
+
+    def area(self):
+        self.area = (1 / 4) * math.sqrt(5 * (5 + (2 * math.sqrt(5)))) * (self.side_length * self.side_length)
+        return (self.area)
+
+
+class Circle(Shape):
+    def __init__(self, radius_length):
+        self.radius_length = radius_length
+
+    def area(self):
+        self.area = 3.14 * (self.radius_length * self.radius_length)
+        return (self.area)
+
+
+class Parallelogram(Shape):
+    def __init__(self, base_length, base_height):
+        self.base_height = base_height
+        self.base_length = base_length
+
+    def area(self):
+        self.area = self.base_length * self.base_height
+        return (self.area)
+
+
+class Rhombus(Shape):
+    def __init__(self, y_diag, x_diag):
+        self.x_diag = x_diag
+        self.y_diag = y_diag
+    def area(self):
+        self.area = (self.x_diag * self.y_diag) / 2
+        return (self.area)
+
+Rect1 = Rectangle(side_length=2, side_width=2)
+print("Area of the Rectangle:")
+print(Rect1.area())
+
+Oval1  = Oval(major_axis=1,minor_axis=1)
+print("Area of the Oval:")
+print(Oval1.area())
+
+Polygon1 = Polygon(side_length=2, sides_count=5)
+print("Area of the Polygon:")
+print(Polygon1.area())
+
+Square1 = Square(side_length=2)
+print("Area of the Square:")
+print(Square1.area())
+
+Triangle1 = Triangle(base_height=3,base_length=2)
+print("Area of the Triangle:")
+print(Triangle1.area())
+
+Pentagon1 = Pentagon(side_length=4)
+print("Area of the Pentagon:")
+print(Pentagon1.area())
+
+Circle1 = Circle(radius_length=3)
+print("Area of the Circle:")
+print(Circle1.area())
+
+Parallelogram1 = Parallelogram(base_length=2,base_height=3)
+print("Area of the Parallelogram:")
+print(Parallelogram1.area())
+
+Rhombus1 = Rhombus(y_diag=6,x_diag=4)
+print("Area of Rhombus:")
+print(Rhombus1.area())
