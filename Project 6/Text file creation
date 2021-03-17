@@ -1,0 +1,130 @@
+import numpy as np
+import pandas as pd
+import statistics
+
+#Creation of Matrix
+Matrix = np.random.randint(0, 10, size=10000).reshape(1000, 10)
+names = [_ for _ in 'abcdefghij']
+rows = list(range(0, 1000))
+
+#Creation of Dataframe with custom column headers
+df = pd.DataFrame(Matrix, index=rows, columns=names)
+df.to_csv('df.csv', index=True, header=True, sep=' ')
+
+
+#Calculation of stats
+a_mean = statistics.mean(df['a'])
+a_med = statistics.median(df['a'])
+a_mode = statistics.mode(df['a'])
+a_std = statistics.stdev(df['a'])
+
+b_mean = statistics.mean(df['b'])
+b_med = statistics.median(df['b'])
+b_mode = statistics.mode(df['b'])
+b_std = statistics.stdev(df['b'])
+
+c_mean = statistics.mean(df['c'])
+c_med = statistics.median(df['c'])
+c_mode = statistics.mode(df['c'])
+c_std = statistics.stdev(df['c'])
+
+d_mean = statistics.mean(df['d'])
+d_med = statistics.median(df['d'])
+d_mode = statistics.mode(df['d'])
+d_std = statistics.stdev(df['d'])
+
+e_mean = statistics.mean(df['e'])
+e_med = statistics.median(df['e'])
+e_mode = statistics.mode(df['e'])
+e_std = statistics.stdev(df['e'])
+
+f_mean = statistics.mean(df['f'])
+f_med = statistics.median(df['f'])
+f_mode = statistics.mode(df['f'])
+f_std = statistics.stdev(df['f'])
+
+g_mean = statistics.mean(df['g'])
+g_med = statistics.median(df['g'])
+g_mode = statistics.mode(df['g'])
+g_std = statistics.stdev(df['g'])
+
+h_mean = statistics.mean(df['h'])
+h_med = statistics.median(df['h'])
+h_mode = statistics.mode(df['h'])
+h_std = statistics.stdev(df['h'])
+
+i_mean = statistics.mean(df['i'])
+i_med = statistics.median(df['i'])
+i_mode = statistics.mode(df['i'])
+i_std = statistics.stdev(df['i'])
+
+j_mean = statistics.mean(df['j'])
+j_med = statistics.median(df['j'])
+j_mode = statistics.mode(df['j'])
+j_std = statistics.stdev(df['j'])
+
+#Demonstration that stats compute correctly
+print(a_mean)
+print(a_med)
+print(a_mode)
+print(a_std)
+print(df)
+
+#Create textfile and write to it
+file1 = open("Project6.txt", "w")
+
+file1.write("Column Headers: \n")
+file1.write(str(names))
+
+file1.write("Sample Data: \n")
+file1.write(str(df['a']))
+file1.write(str(df['b']))
+file1.write(str(df['c']))
+
+file1.write("Data Means: \n")
+file1.write(str(a_mean))
+file1.write(str(b_mean))
+file1.write(str(c_mean))
+file1.write(str(d_mean))
+file1.write(str(e_mean))
+file1.write(str(f_mean))
+file1.write(str(g_mean))
+file1.write(str(h_mean))
+file1.write(str(i_mean))
+file1.write(str(j_mean))
+
+file1.write("Data Medians: \n")
+file1.write(str(a_med))
+file1.write(str(b_med))
+file1.write(str(c_med))
+file1.write(str(d_med))
+file1.write(str(e_med))
+file1.write(str(f_med))
+file1.write(str(g_med))
+file1.write(str(h_med))
+file1.write(str(i_med))
+file1.write(str(j_med))
+
+file1.write("Data Modes: \n")
+file1.write(str(a_mode))
+file1.write(str(b_mode))
+file1.write(str(c_mode))
+file1.write(str(d_mode))
+file1.write(str(e_mode))
+file1.write(str(f_mode))
+file1.write(str(g_mode))
+file1.write(str(h_mode))
+file1.write(str(i_mode))
+file1.write(str(j_mode))
+
+file1.write("Data Standard Deviations: \n")
+file1.write(str(a_std))
+file1.write(str(b_std))
+file1.write(str(c_std))
+file1.write(str(d_std))
+file1.write(str(e_std))
+file1.write(str(f_std))
+file1.write(str(g_std))
+file1.write(str(h_std))
+file1.write(str(i_std))
+file1.write(str(j_std))
